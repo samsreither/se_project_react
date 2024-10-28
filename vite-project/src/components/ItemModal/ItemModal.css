@@ -1,0 +1,40 @@
+.modal__content_type_image {
+    display: flex;
+    max-width: 498px;
+    max-height: 610px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.modal__close {
+    background-color: transparent;
+}
+
+.modal__close-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.modal__footer {
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.modal__caption {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+
