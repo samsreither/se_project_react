@@ -1,15 +1,15 @@
 .cards__list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    gap: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
 }
 
 .cards__text {
-    font-size: 20px;
-    color: #000000;
-    line-height: 24.8px;
-    margin: 40px 0 34px 0;
+  font-size: 20px;
+  color: #000000;
+  line-height: 24.8px;
+  margin: 40px 0 34px 0;
 }

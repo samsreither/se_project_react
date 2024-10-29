@@ -1,24 +1,23 @@
 .card {
-    width: 323px;
-    position: relative;
-    display: flex;
-    justify-content: center;
+  width: 323px;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .card__name {
-    position: absolute;
-    top: 15px;
-    margin: 0;
-    background-color: white;
-    padding: 2px 12px;
-    border-radius: 4px;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 700;
-    color: #00000099;
-
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  background-color: white;
+  padding: 2px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #00000099;
 }
 
 .card__image {
-    width: 100%;
+  width: 100%;
 }

@@ -1,10 +1,11 @@
 .page {
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Cabinet Grotesk', sans-serif;
-
+  font-family: "Cabinet Grotesk", sans-serif;
 }
 
 .page__content {
