@@ -8,8 +8,8 @@
 
 .page__content {
   max-width: 1360px;
-  padding: 0 20px;
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin: auto;
 }

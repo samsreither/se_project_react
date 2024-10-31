@@ -1,12 +1,6 @@
 {
   "items": [
     {
-      "_id": 7,
-      "name": "Jeans",
-      "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c"
-    },
-    {
       "_id": 8,
       "name": "Loafers",
       "weather": "warm",
@@ -53,6 +47,30 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "_id": 1730394401771,
+      "name": "shirt",
+      "imageUrl": "https://imgs.michaels.com/MAM/assets/1/5E3C12034D34434F8A9BAAFDDF0F8E1B/img/BD1E5035D0EB4350BB57BC0172BC0521/10503919_11.jpg",
+      "weatherType": "on"
+    },
+    {
+      "_id": 1730398072380,
+      "name": "shirt",
+      "imageUrl": "https://cdn.4imprint.com/prod/extras/105233/448644/700/1.jpg",
+      "weatherType": "warm"
+    },
+    {
+      "_id": 1730398728433,
+      "name": "shirt",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-lk0gwzb/images/stencil/1280x1280/products/1645/9512/black-front__99204_7558__56521.1708459754.jpg?c=2&imbypass=on",
+      "weatherType": "warm"
+    },
+    {
+      "_id": 1730398899851,
+      "name": "shirt",
+      "imageUrl": "https://cdn11.bigcommerce.com/s-lk0gwzb/images/stencil/1280x1280/products/1645/9512/black-front__99204_7558__56521.1708459754.jpg?c=2&imbypass=on",
+      "weatherType": "warm"
     }
   ]
 }

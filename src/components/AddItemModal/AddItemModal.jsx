@@ -5,27 +5,36 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   // Declare state for each input field
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [weatherType, setWeatherType] = useState("");
+  const [weather, setWeather] = useState("");
 
   // Reset the input field state to empty strings when the modal is opened
   useEffect(() => {
     if (isOpen) {
       setName("");
       setImageUrl("");
-      setWeatherType("");
+      setWeather("");
     }
   }, [isOpen]);
 
   // Create onChange handlers for each state variable
   const handleNameChange = (e) => setName(e.target.value);
   const handleImageUrlChange = (e) => setImageUrl(e.target.value);
-  const handleWeatherTypeChange = (e) => setWeatherType(e.target.value);
+  
+  const handleWeatherTypeChange = (e) => {
+    console.log("Radio button changed:", e.target.value);
+    setWeather(e.target.value);
+    console.log("Selected weather type:", e.target.value);
+  }
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl, weatherType });
+    console.log("Submitting values:", {name, imageUrl, weather});
+    onAddItem({ name, imageUrl, weather });
     onCloseModal();
+    setName("");
+    setImageUrl("");
+    setWeather("");
   };
 
   return (
@@ -67,7 +76,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             id="hot"
             name="weatherType"
             value="hot"
-            checked={weatherType === "hot"}
+            checked={weather === "hot"}
             onChange={handleWeatherTypeChange}
           />
           Hot
@@ -79,7 +88,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             id="warm"
             name="weatherType"
             value="warm"
-            checked={weatherType === "warm"}
+            checked={weather === "warm"}
             onChange={handleWeatherTypeChange}
           />
           Warm
@@ -91,7 +100,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             id="cold"
             name="weatherType"
             value="cold"
-            checked={weatherType === "cold"}
+            checked={weather === "cold"}
             onChange={handleWeatherTypeChange}
           />
           Cold
