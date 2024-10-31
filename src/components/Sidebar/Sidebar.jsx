@@ -1,5 +1,5 @@
 import avatar from "../../assets/wtwr-avatar.svg";
-import "./sidebar.css";
+import "./Sidebar.css";
 
 function Sidebar() {
   return (
