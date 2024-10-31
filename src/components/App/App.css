@@ -1,8 +1,6 @@
 .page {
   background-color: #f3f3f3;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   min-height: 100vh;
   font-family: "Cabinet Grotesk", sans-serif;
@@ -11,5 +9,7 @@
 .page__content {
   max-width: 1360px;
   padding: 0 20px;
+  display: flex;
   flex: 1;
+  flex-direction: column;
 }
