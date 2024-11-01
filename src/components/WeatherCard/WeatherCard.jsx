@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./WeatherCard.css";
 import sunny from "../../assets/sunny.svg";
-import CurrentTemperatureUnitContext from "../../utils/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function WeatherCard({ weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);

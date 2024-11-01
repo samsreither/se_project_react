@@ -4,11 +4,11 @@ import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import CurrentTemperatureUnitContext from "../../utils/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 
@@ -25,14 +25,18 @@ function App() {
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
 
   const handleAddItemSubmit = (newItem) => {
-    addItem(newItem)
-      .then((savedItem) => {
-        console.log("Item added:", savedItem);
-        setClothingItems([savedItem, ...clothingItems]);
+    return addItem(newItem)
+      .then((addedItem) => {
+        console.log("Item added:", addedItem);
+
+        setClothingItems((prevItems) => {
+          const updatedItems = [addedItem, ...prevItems];
+          console.log("Updated clothing items array:", updatedItems);
+          return updatedItems;
+        });
+        closeActiveModal();
       })
-      .catch((error) => {
-        console.error("Error adding item:", error);
-      });
+      .catch(console.error);
   };
 
   const handleCardClick = (card) => {
@@ -42,10 +46,10 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
-    setIsAddItemModalOpen(true);
   };
 
   const closeActiveModal = () => {
+    console.log("Modal closed");
     setActiveModal("");
   };
 
@@ -59,7 +63,7 @@ function App() {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== cardToDelete._id)
         );
-        setActiveModal("");
+        closeActiveModal;
       })
       .catch(console.error);
   };
@@ -115,27 +119,12 @@ function App() {
             <Footer />
           </div>
           
-          <ModalWithForm
+          <AddItemModal
             buttonText="Add garment"
             title="New garment"
             isOpen={activeModal === "add-garment"}
-            onClose={closeActiveModal}
-            onSubmit={(event) => {
-              event.preventDefault();
-              const name = event.target.name.value;
-              const imageUrl = event.target.imageUrl.value;
-              const weather = event.target.weather.value;
-
-              const newItem = {
-                _id: Date.now(),
-                name,
-                imageUrl: imageUrl,
-                weather: weather,
-              };
-
-              handleAddItemSubmit(newItem);
-              closeActiveModal();
-            }}
+            onCloseModal={closeActiveModal}
+            onSubmit={handleAddItemSubmit}
           >
             <label htmlFor="name" className="modal__label">
               Name
@@ -202,7 +191,7 @@ function App() {
                 Cold
               </label>
             </fieldset>
-          </ModalWithForm>
+          </AddItemModal>
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}

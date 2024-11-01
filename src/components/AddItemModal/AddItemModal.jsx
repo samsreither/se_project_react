@@ -1,40 +1,45 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { addItem } from "../../utils/api";
+import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
-  // Declare state for each input field
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
+const AddItemModal = ({ isOpen, onAddItem, onCloseModal, onSubmit }) => {
+  const { values, handleChange, setValues } = useForm({
+    name: "",
+    imageUrl: "",
+    weather: "",
+  });
 
-  // Reset the input field state to empty strings when the modal is opened
+  const { name, imageUrl, weather } = values;
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     if (isOpen) {
-      setName("");
-      setImageUrl("");
-      setWeather("");
+      setError(null);
     }
   }, [isOpen]);
-
-  // Create onChange handlers for each state variable
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleImageUrlChange = (e) => setImageUrl(e.target.value);
-  
-  const handleWeatherTypeChange = (e) => {
-    console.log("Radio button changed:", e.target.value);
-    setWeather(e.target.value);
-    console.log("Selected weather type:", e.target.value);
-  }
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting values:", {name, imageUrl, weather});
-    onAddItem({ name, imageUrl, weather });
-    onCloseModal();
-    setName("");
-    setImageUrl("");
-    setWeather("");
+    console.log("Submit button clicked");
+    setLoading(true);
+    setError(null);
+
+    const newItem = { name, imageUrl, weather };
+    console.log("Submitting new item:", newItem);
+
+    onSubmit(newItem)
+      .then(() => {
+        setValues({ name: "", imageUrl: "", weather: "" });
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
   };
 
   return (
@@ -51,9 +56,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           type="text"
           className="modal__input"
           id="name"
+          name="name"
           placeholder="Name"
           value={name}
-          onChange={handleNameChange}
+          onChange={handleChange}
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -62,9 +68,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           type="url"
           className="modal__input"
           id="imageUrl"
+          name="imageUrl"
           placeholder="Image URL"
           value={imageUrl}
-          onChange={handleImageUrlChange}
+          onChange={handleChange}
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -74,10 +81,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="radio"
             className="modal__radio-input"
             id="hot"
-            name="weatherType"
+            name="weather"
             value="hot"
             checked={weather === "hot"}
-            onChange={handleWeatherTypeChange}
+            onChange={handleChange}
           />
           Hot
         </label>
@@ -86,10 +93,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="radio"
             className="modal__radio-input"
             id="warm"
-            name="weatherType"
+            name="weather"
             value="warm"
             checked={weather === "warm"}
-            onChange={handleWeatherTypeChange}
+            onChange={handleChange}
           />
           Warm
         </label>
@@ -98,10 +105,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="radio"
             className="modal__radio-input"
             id="cold"
-            name="weatherType"
+            name="weather"
             value="cold"
             checked={weather === "cold"}
-            onChange={handleWeatherTypeChange}
+            onChange={handleChange}
           />
           Cold
         </label>
