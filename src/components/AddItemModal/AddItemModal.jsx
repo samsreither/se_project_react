@@ -38,9 +38,10 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, onSubmit }) => {
       })
       .catch((err) => {
         setError(err);
+      })
+      .finally(() => {
         setLoading(false);
-      });
-  };
+      })};
 
   return (
     <ModalWithForm

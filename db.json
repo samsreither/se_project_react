@@ -1,100 +1,16 @@
 {
   "items": [
     {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "hot",
-      "_id": 1730461011772
+      "name": "Shirt",
+      "imageUrl": "https://img.sonofatailor.com/images/customizer/product/White_O_Crew_Regular_NoPocket.jpg",
+      "weather": "cold",
+      "_id": 1
     },
     {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "hot",
-      "_id": 1730461011773
-    },
-    {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "hot",
-      "_id": 1730461011774
-    },
-    {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "hot",
-      "_id": 1730461011775
-    },
-    {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011783
-    },
-    {
-      "name": "pants",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011784
-    },
-    {
-      "name": "shoes",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011785
-    },
-    {
-      "name": "shoes",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011786
-    },
-    {
-      "name": "shoes",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011788
-    },
-    {
-      "name": "socks",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011796
-    },
-    {
-      "name": "socks",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011797
-    },
-    {
-      "name": "shoes",
-      "imageUrl": "",
-      "weather": "warm",
-      "_id": 1730461011798
-    },
-    {
-      "name": "shoes",
-      "imageUrl": "",
-      "weather": "warm",
-      "_id": 1730461011799
-    },
-    {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "warm",
-      "_id": 1730461011800
-    },
-    {
-      "name": "shirt",
-      "imageUrl": "",
-      "weather": "warm",
-      "_id": 1730461011801
-    },
-    {
-      "name": "shoes",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 1730461011802
+      "name": "Pants",
+      "imageUrl": "https://i5.walmartimages.com/seo/George-Men-s-Premium-Straight-Fit-Khaki-Pants_f659d317-de24-4b92-bf8d-05e1223a2bf7.c2637e94c3c2c3e9e36485c039e3d0e2.jpeg",
+      "weather": "cold",
+      "_id": 2
     }
   ]
 }
