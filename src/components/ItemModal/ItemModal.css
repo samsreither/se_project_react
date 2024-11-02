@@ -10,6 +10,11 @@
   padding: 0;
 }
 
+.modal__image {
+  max-width: 498px;
+  max-height: 498px;
+}
+
 .modal__close {
   background-color: transparent;
 }

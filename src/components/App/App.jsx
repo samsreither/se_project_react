@@ -27,17 +27,11 @@ function App() {
   const handleAddItemSubmit = (newItem) => {
     return addItem(newItem)
       .then((addedItem) => {
-        console.log("Item added:", addedItem);
-
-        setClothingItems((prevItems) => {
-          const updatedItems = [addedItem, ...prevItems];
-          console.log("Updated clothing items array:", updatedItems);
-          return updatedItems;
-        });
+        setClothingItems((prevItems) => [addedItem, ...prevItems]);
         closeActiveModal();
       })
       .catch(console.error);
-  };
+    };
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -61,12 +55,12 @@ function App() {
     deleteItem(cardToDelete._id)
       .then(() => {
         setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== cardToDelete._id)
-        );
-        closeActiveModal;
-      })
+          prevItems.filter((item) => item._id !== cardToDelete._id));
+        closeActiveModal();
+})
       .catch(console.error);
-  };
+};
+          
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
