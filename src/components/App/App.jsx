@@ -44,6 +44,8 @@ function App() {
   const handleRegister = (data) => {
     return register(data)
       .then((newUser) => {
+        localStorage.setItem("jwt", data.token);
+        console.log("Token saved after login:", localStorage.getItem("jwt")); // log the stored item
         setUser(newUser); // store user data on successful registration
         closeActiveModal();
       })
@@ -54,6 +56,8 @@ function App() {
   const handleLogin = (data) => {
     return login(data)
       .then((loggedInUser) => {
+        localStorage.setItem("jwt", data.token);
+        console.log("Token saved after login:", localStorage.getItem("jwt")); // log the stored item
         setUser(loggedInUser); // store user data on successful login
         setIsLoggedIn(true);
         closeActiveModal();
@@ -190,53 +194,23 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    isLoggedIn ? (
-                      <Main
-                        weatherData={weatherData}
-                        onCardClick={handleCardClick}
-                        onCardLike={handleCardLike}
-                        clothingItems={clothingItems}
-                      />
-                    ) : (
-                      <Navigate to="/login" replace />
-                    )
+                    <Main
+                      weatherData={weatherData}
+                      onCardClick={handleCardClick}
+                      onCardLike={handleCardLike}
+                      clothingItems={clothingItems}
+                    />
                   }
                 />
                 <Route
                   path="/profile"
                   element={
-                    isLoggedIn ? (
-                      <Profile
-                        onCardClick={handleCardClick}
-                        onAddClick={handleAddClick}
-                        clothingItems={clothingItems}
-                        onCardLike={handleCardLike}
-                        onSignOut={handleSignOut}
-                      />
-                    ) : (
-                      <Navigate to="/login" replace />
-                    )
-                  }
-                />
-                <Route
-                  path="/login"
-                  element={
-                    <LoginModal
-                      isOpen={activeModal === "login"}
-                      onLogin={handleLogin}
-                      onCloseModal={closeActiveModal}
-                      error={error}
-                    />
-                  }
-                />
-                <Route
-                  path="/register"
-                  element={
-                    <RegisterModal
-                      isOpen={activeModal === "register"}
-                      onRegister={handleRegister}
-                      onCloseModal={closeActiveModal}
-                      error={error}
+                    <Profile
+                      onCardClick={handleCardClick}
+                      onAddClick={handleAddClick}
+                      clothingItems={clothingItems}
+                      onCardLike={handleCardLike}
+                      onSignOut={handleSignOut}
                     />
                   }
                 />

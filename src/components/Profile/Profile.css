@@ -4,17 +4,24 @@
     min-height: 100vh;
 }
 
-.signout-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #f44336;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .signout-button:hover {
-    background-color: #d32f2f;
-  }
+.profile__buttons {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  font-size: 20px;
+  font-weight: 700px;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.profile__change-data {
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
+.profile__signout {
+  border: none;
+  background: transparent;
+  text-align: left;
+}

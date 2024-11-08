@@ -7,9 +7,14 @@ function Profile({ onCardClick, onAddClick, clothingItems, onSignOut }) {
     <div className="profile__page">
       <section className="profile__sidebar">
         <Sidebar />
-        <button className="signout-button" onClick={onSignOut}>
-          Sign Out
-        </button>
+        <div className="profile__buttons">
+          <button className="profile__change-data">
+            Change profile data
+          </button>
+          <button className="profile__signout" onClick={onSignOut}>
+            Log Out
+          </button>
+        </div>
       </section>
       <section className="profile__clothing-items">
         <ClothesSection
