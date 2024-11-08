@@ -3,3 +3,18 @@
     flex-direction: row;
     min-height: 100vh;
 }
+
+.signout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #f44336;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .signout-button:hover {
+    background-color: #d32f2f;
+  }

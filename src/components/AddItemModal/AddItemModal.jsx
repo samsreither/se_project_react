@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { addItem } from "../../utils/api";
 import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onCloseModal, onSubmit }) => {
+const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
   const { values, handleChange, setValues } = useForm({
     name: "",
     imageUrl: "",

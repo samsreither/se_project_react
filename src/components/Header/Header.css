@@ -52,3 +52,15 @@
 .header__link:hover {
   text-decoration: underline;
 }
+
+.header__avatar-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: white;
+}

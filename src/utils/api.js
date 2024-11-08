@@ -9,7 +9,12 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`)
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then(checkResponse)
     .catch((error) => {
       console.error("Failed to fetch items:", error);
@@ -17,12 +22,13 @@ function getItems() {
     });
 }
 
-function addItem(item) {
+function addItem(item, token) {
   console.log("Adding item:", item);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, // include token for authorization
     },
     body: JSON.stringify(item),
   })
@@ -36,6 +42,10 @@ function addItem(item) {
 function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
   })
     .then(checkResponse)
     .catch((error) => {
