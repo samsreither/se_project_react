@@ -43,9 +43,10 @@ function App() {
   // handler for registration
   const handleRegister = (data) => {
     return register(data)
-      .then((newUser) => {
-        localStorage.setItem("jwt", data.token);
+      .then((token, newUser) => {
+        localStorage.setItem("jwt", token);
         console.log("Token saved after login:", localStorage.getItem("jwt")); // log the stored item
+
         setUser(newUser); // store user data on successful registration
         closeActiveModal();
       })
@@ -55,8 +56,8 @@ function App() {
   // handler for login
   const handleLogin = (data) => {
     return login(data)
-      .then((loggedInUser) => {
-        localStorage.setItem("jwt", data.token);
+      .then((token, loggedInUser) => {
+        localStorage.setItem("jwt", token);
         console.log("Token saved after login:", localStorage.getItem("jwt")); // log the stored item
         setUser(loggedInUser); // store user data on successful login
         setIsLoggedIn(true);
