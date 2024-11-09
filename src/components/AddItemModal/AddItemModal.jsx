@@ -28,6 +28,8 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
     setError(null);
 
     const newItem = { name, imageUrl, weather };
+    
+
     console.log("Submitting new item:", newItem);
 
     onSubmit(newItem)

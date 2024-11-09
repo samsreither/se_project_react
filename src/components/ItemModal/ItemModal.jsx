@@ -9,6 +9,7 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
   // access current user from context
   const currentUser = useContext(CurrentUserContext);
 
+  const { name, imageUrl, weather, owner } = card;
   const isItemCreator = currentUser && currentUser.id === card.ownerId;
 
   return (
@@ -17,10 +18,10 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
         <button onClick={onClose} type="button" className="modal__close">
           <img src={whiteX} alt="Close" className="modal__close-icon" />
         </button>
-        <img src={card.imageUrl} alt="modal-image" className="modal__image" />
+        <img src={imageUrl} alt="modal-image" className="modal__image" />
         <div className="modal__footer">
-          <h2 className="modal__caption">{card.name}</h2>
-          <p className="modal__weather">Weather: {card.weather}</p>
+          <h2 className="modal__caption">{name}</h2>
+          <p className="modal__weather">Weather: {weather}</p>
 
           {/* conditionally render the delete button based on the current user */}
           {isItemCreator && (

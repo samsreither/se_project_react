@@ -117,7 +117,7 @@ function App() {
   const handleAddItemSubmit = (newItem) => {
     const token = localStorage.getItem("jwt");
     console.log("Token retrieved for addItem:", token);
-    return addItem(newItem).then((addedItem) => {
+    return addItem(newItem,token).then((addedItem) => {
       setClothingItems((prevItems) => [addedItem, ...prevItems]);
       closeActiveModal();
     });

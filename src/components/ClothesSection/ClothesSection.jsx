@@ -22,9 +22,12 @@ function ClothesSection({ onCardClick, onAddClick, clothingItems }) {
 
       <ul className="clothes-section__items">
         {clothingItems.length > 0 ? (
-          clothingItems.map((item) => (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
-          ))
+          clothingItems.map((item) => {
+            console.log(item);
+            return (
+            <ItemCard key={item._id} item={item.data} onCardClick={onCardClick} />
+          );
+        })
         ) : (
           // need to style this section
           <li className="clothes-section__no-items">No clothing items available.</li>

@@ -1,13 +1,20 @@
 .card {
   width: 324px;
-  height: 324px;
-  position: relative;
+  max-height: 324px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  margin-top: 15px;
 }
 
 .card__name {
-  position: absolute;
   top: 15px;
   margin: 0;
   background-color: white;
@@ -21,4 +28,10 @@
 
 .card__image {
   width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.like-button {
+  border: none;
 }
