@@ -27,5 +27,5 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+  }).then((res) => (res.ok ? res.json() : Promise.reject(res.error)));
 };

@@ -40,33 +40,35 @@ function App() {
   const openRegisterModal = () => setActiveModal("register");
   const openLoginModal = () => setActiveModal("login");
 
-  // handler for registration
   const handleRegister = (data) => {
-    return register(data)
-      .then((token, newUser) => {
-        localStorage.setItem("jwt", token);
-        console.log("Token saved after login:", localStorage.getItem("jwt")); // log the stored item
-
-        setUser(newUser); // store user data on successful registration
-        closeActiveModal();
+    return register(data) // Register the user
+      .then((newUser) => {
+        // newUser is returned from the register function
+        return login({ email: data.email, password: data.password })
+          .then((res) => {
+            if (res.token) {
+              // Successfully logged in, save the JWT token to localStorage
+              localStorage.setItem("jwt", res.token);
+              console.log("Token saved after login:", localStorage.getItem("jwt")); // log the token
+              
+              // After login, set the user data (newUser from register)
+              setUser(newUser);  // store user data after registration
+  
+              // set the logged-in state
+              setIsLoggedIn(true);
+              
+              closeActiveModal();
+            } else {
+              throw new Error("Login failed: No token returned");
+            }
+          });
       })
-      .catch(setError);
-  };
-
-  // handler for login
-  const handleLogin = (data) => {
-    return login(data)
-      .then((token, loggedInUser) => {
-        localStorage.setItem("jwt", token);
-        console.log("Token saved after login:", localStorage.getItem("jwt")); // log the stored item
-        setUser(loggedInUser); // store user data on successful login
-        setIsLoggedIn(true);
-        closeActiveModal();
-      })
-      .catch((err) => {
-        setError(err.response ? err.response.data.message : "Login failed");
+      .catch((error) => {
+        console.error("Error during registration or login:", error);
+        setError("Registration or login failed. Please try again.");
       });
   };
+
   // check for token on App load
   useEffect(() => {
     checkToken()
@@ -113,6 +115,8 @@ function App() {
   };
 
   const handleAddItemSubmit = (newItem) => {
+    const token = localStorage.getItem("jwt");
+    console.log("Token retrieved for addItem:", token);
     return addItem(newItem).then((addedItem) => {
       setClothingItems((prevItems) => [addedItem, ...prevItems]);
       closeActiveModal();
