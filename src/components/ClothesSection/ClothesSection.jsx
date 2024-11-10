@@ -25,7 +25,7 @@ function ClothesSection({ onCardClick, onAddClick, clothingItems }) {
           clothingItems.map((item) => {
             console.log(item);
             return (
-            <ItemCard key={item._id} item={item.data} onCardClick={onCardClick} />
+            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
           );
         })
         ) : (

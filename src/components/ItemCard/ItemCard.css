@@ -1,9 +1,14 @@
 .card {
   width: 324px;
-  max-height: 324px;
+  height: 324px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2px solid #0000004D;
+  border-radius: 10px;
   position: relative;
 }
 
@@ -11,27 +16,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  gap: 10px;
 }
 
 .card__name {
-  top: 15px;
-  margin: 0;
   background-color: white;
-  padding: 2px 12px;
   border-radius: 4px;
   font-size: 16px;
   line-height: 20px;
   font-weight: 700;
   color: #00000099;
+  margin: 0;
+  padding: 2px 12px;
+}
+
+.like-button {
+  border: none;
+  background-color: transparent;
+  width: 18px;
+  height: 15px;
+  padding: 0;
 }
 
 .card__image {
   width: 100%;
   height: auto;
   object-fit: cover;
-}
-
-.like-button {
-  border: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
 }

@@ -69,6 +69,28 @@ function App() {
       });
   };
 
+  const handleLogin = (data) => {
+    return login(data)
+    .then((res) => {
+      if (res.token) {
+        localStorage.setItem("jwt", res.token);
+        console.log("Token saved after login:", localStorage.getItem("jwt"));
+        return checkToken();
+      } else {
+        throw new Error("Login failed: No token returned");
+      }
+    })
+    .then((userData) => {
+      setUser(userData);
+      setIsLoggedIn(true);
+      closeActiveModal();
+    })
+    .catch((error) => {
+      console.error("Error during login:", error);
+      setError("Login failed. Please try again");
+    });
+  };
+
   // check for token on App load
   useEffect(() => {
     checkToken()
@@ -124,6 +146,7 @@ function App() {
   };
 
   const handleCardClick = (card) => {
+    console.log('Card clicked:', card);
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -224,13 +247,18 @@ function App() {
 
             {/* Modals */}
             {activeModal === "register" && (
-              <RegisterModal
+            <RegisterModal
                 isOpen={activeModal === "register"}
                 onRegister={handleRegister}
                 onCloseModal={closeActiveModal}
                 error={error}
-              />
+            />
             )}
+            <LoginModal
+                isOpen={activeModal === "login"}
+                onLogin={handleLogin}
+                onCloseModal={closeActiveModal}
+            />
             <AddItemModal
               buttonText="Add garment"
               title="New garment"

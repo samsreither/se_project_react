@@ -8,10 +8,10 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
 
   // access current user from context
   const currentUser = useContext(CurrentUserContext);
-
-  const { name, imageUrl, weather, owner } = card;
+  console.log("Card is...",card);
+  const { name, imageUrl, weather, owner } = card.data || {};
   const isItemCreator = currentUser && currentUser.id === card.ownerId;
-
+  console.log('Modal imageUrl:', imageUrl);
   return (
     <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_image">
