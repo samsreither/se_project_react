@@ -44,11 +44,11 @@
   max-height: 436px;
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .modal__form {

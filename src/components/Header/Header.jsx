@@ -36,6 +36,7 @@ function Header({ handleAddClick, weatherData, openLoginModal, openRegisterModal
       </p>
       <div className="header__controls">
         <ToggleSwitch isFahrenheit={isFahrenheit} onToggle={onToggle} />
+        {currentUser && (
         <button
           onClick={handleAddClick}
           type="button"
@@ -43,6 +44,7 @@ function Header({ handleAddClick, weatherData, openLoginModal, openRegisterModal
         >
           + Add clothes
         </button>
+        )}
       </div>
 
       {/* User Info Section */}

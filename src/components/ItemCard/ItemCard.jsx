@@ -3,7 +3,7 @@ import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import likeImage from "../../assets/like-image.svg";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, onCardLike }) {
   const { name, imageUrl, Likes } = item.data || {};
   const currentUser = useContext(CurrentUserContext);
   // check if current user's id is in the item.likes array

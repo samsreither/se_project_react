@@ -25,3 +25,7 @@
   background: transparent;
   text-align: left;
 }
+
+.edit-profile-modal {
+  visibility: visible;
+}

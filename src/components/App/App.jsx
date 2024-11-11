@@ -75,13 +75,14 @@ function App() {
       if (res.token) {
         localStorage.setItem("jwt", res.token);
         console.log("Token saved after login:", localStorage.getItem("jwt"));
-        return checkToken();
+        return checkToken(res.token);
       } else {
         throw new Error("Login failed: No token returned");
       }
     })
     .then((userData) => {
       setUser(userData);
+      console.log(user);
       setIsLoggedIn(true);
       closeActiveModal();
     })
@@ -114,7 +115,7 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     if (!isLiked) {
-      // Add like
+      // Add like - send request to add user's ID to card likes array
       api
         .addCardLike(id, token)
         .then((updatedCard) => {
@@ -124,7 +125,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     } else {
-      // Remove like
+      // Remove like - send request to remove user's ID from card likes array
       api
         .removeCardLike(id, token)
         .then((updatedCard) => {
@@ -165,19 +166,31 @@ function App() {
   };
 
   const handleCardDelete = (cardToDelete) => {
-    if (user && user.token) {
-      deleteItem(cardToDelete._id)
-        .then(() => {
-          setClothingItems((prevItems) =>
-            prevItems.filter((item) => item._id !== cardToDelete._id)
-          );
-          closeActiveModal();
-        })
-        .catch(console.error);
-    } else {
+    const token = localStorage.getItem("jwt");
+
+    if (!token) {
       console.error("No token found, cannot delete item");
+      return;
     }
-  };
+
+    checkToken(token)
+      .then(() => {
+        console.log("Attempting to delete item with ID:", cardToDelete._id);
+        deleteItem(cardToDelete.data._id, token)
+          .then(() => {
+            setClothingItems((prevItems) =>
+              prevItems.filter((item) => item.data._id !== cardToDelete.data._id)
+            );
+            closeActiveModal();
+          })
+          .catch((error) => {
+            console.error("Error deleting item:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Token verification failed:", error);
+      });
+    }; 
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
