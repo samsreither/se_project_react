@@ -9,7 +9,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   // check if current user's id is in the item.likes array
   const isLiked = Array.isArray(item.likes) && item.likes.some((id) => id === currentUser?.id);
   // item.likes.some((id) => id === currentUser?.id);
-  console.log(item);
 
   const handleCardClick = () => {
     onCardClick(item);

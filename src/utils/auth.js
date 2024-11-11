@@ -30,6 +30,7 @@ export const checkToken = (token) => {
   }).then((res) => (res.ok ? res.json() : Promise.reject(res.error)));
 };
 
+// update the profile
 export const handleUpdateProfile = (token, userData) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
@@ -37,7 +38,7 @@ export const handleUpdateProfile = (token, userData) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify({ userData }),
+    body: JSON.stringify( userData ),
   }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
 };
 

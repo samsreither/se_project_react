@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import {
@@ -22,6 +22,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 
 function App() {
+  const currentUser = useContext(CurrentUserContext);
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999 },
@@ -49,7 +50,6 @@ function App() {
             if (res.token) {
               // Successfully logged in, save the JWT token to localStorage
               localStorage.setItem("jwt", res.token);
-              console.log("Token saved after login:", localStorage.getItem("jwt")); // log the token
               
               // After login, set the user data (newUser from register)
               setUser(newUser);  // store user data after registration
@@ -74,7 +74,6 @@ function App() {
     .then((res) => {
       if (res.token) {
         localStorage.setItem("jwt", res.token);
-        console.log("Token saved after login:", localStorage.getItem("jwt"));
         return checkToken(res.token);
       } else {
         throw new Error("Login failed: No token returned");
@@ -82,7 +81,7 @@ function App() {
     })
     .then((userData) => {
       setUser(userData);
-      console.log(user);
+      console.log('user is...',user);
       setIsLoggedIn(true);
       closeActiveModal();
     })
@@ -94,12 +93,16 @@ function App() {
 
   // check for token on App load
   useEffect(() => {
-    checkToken()
+    const token = localStorage.getItem("jwt");
+    
+    checkToken(token)
       .then((user) => {
         setUser(user); // set user if token is valid
+        console.log('user is from checktoken...',user);
         setIsLoggedIn(true);
       })
       .catch((err) => {
+        console.error(err);
         setIsLoggedIn(false);
         setUser(null);
       });
@@ -139,15 +142,15 @@ function App() {
 
   const handleAddItemSubmit = (newItem) => {
     const token = localStorage.getItem("jwt");
-    console.log("Token retrieved for addItem:", token);
+    console.log('adding item to mongo', newItem);
     return addItem(newItem,token).then((addedItem) => {
+      console.log('item added to mongo', addedItem);
       setClothingItems((prevItems) => [addedItem, ...prevItems]);
       closeActiveModal();
     });
   };
 
   const handleCardClick = (card) => {
-    console.log('Card clicked:', card);
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -167,7 +170,8 @@ function App() {
 
   const handleCardDelete = (cardToDelete) => {
     const token = localStorage.getItem("jwt");
-
+    console.log('token',token);
+    console.log('Card to delete',cardToDelete);
     if (!token) {
       console.error("No token found, cannot delete item");
       return;
@@ -175,11 +179,18 @@ function App() {
 
     checkToken(token)
       .then(() => {
-        console.log("Attempting to delete item with ID:", cardToDelete._id);
-        deleteItem(cardToDelete.data._id, token)
+        const itemId = cardToDelete.data ? cardToDelete.data._id : cardToDelete._id;
+        console.log("Attempting to delete item withID:", itemId);
+        deleteItem(itemId, token)
           .then(() => {
-            setClothingItems((prevItems) =>
-              prevItems.filter((item) => item.data._id !== cardToDelete.data._id)
+            setClothingItems((prevItems) => {
+              const filteredItems = prevItems.filter((item) => {
+                console.log(item);
+                return item.data && item.data._id !== itemId;
+              });
+              console.log('Filtered items:', filteredItems);
+              return filteredItems;
+            }
             );
             closeActiveModal();
           })
@@ -202,15 +213,20 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (user && user.token) {
+    console.log('isLoggedIn', isLoggedIn);
+    console.log('currentUser:', user);
+    if (isLoggedIn && user) {
       getItems()
         .then((data) => {
-          console.log("Fetched Items:", data);
-          setClothingItems(data);
+          console.log('current user id', user._id);
+          console.log('item data is ...',data);
+          const userItems = data.filter(item => item.owner === user._id)
+          setClothingItems(userItems);
+          console.log('clothing data',userItems);
         })
         .catch(console.error);
     }
-  }, [user]); // only fetch items when user is logged in
+  }, [isLoggedIn]); // only fetch items when user is logged in
 
   // Log the active modal state every time it changes
   useEffect(() => {

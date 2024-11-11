@@ -21,7 +21,7 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
                 console.log('Item weather:', item.weather);
                 console.log('Item:', item);
                 console.log('Weather type:', weatherData.type);
-                return item.data.weather === weatherData.type})
+                return item.weather === weatherData.type})
               .map((item) => (
                 <ItemCard
                   key={item._id}

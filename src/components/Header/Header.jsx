@@ -21,8 +21,6 @@ function Header({ handleAddClick, weatherData, openLoginModal, openRegisterModal
   // access current user from context
   const currentUser = useContext(CurrentUserContext);
 
-  console.log("Current user:", currentUser);
-
   // make first letter of name as avatar if no avatar is provided
   const avatarPlaceholder = currentUser ? currentUser.name[0] : "U";
 

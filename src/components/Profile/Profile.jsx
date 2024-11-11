@@ -16,12 +16,10 @@ function Profile({ onCardClick, onAddClick, clothingItems, onSignOut }) {
   // need to code to prepopulate inputs with user data
 
   const handleChangeProfileData = () => {
-    console.log("handle change profile data is being triggered");
     setEditProfileOpen(true);
   };
 
   const handleCloseProfileData = () => {
-    console.log("close button clicked");
     setEditProfileOpen(false);
   };
 
@@ -40,7 +38,6 @@ function Profile({ onCardClick, onAddClick, clothingItems, onSignOut }) {
     handleUpdateProfile(token, userData) // update profile on server (API) - handleUpdateProfile is in api.js
     .then((updatedUser) => {
       setCurrentUser(updatedUser);
-      console.log('Profile updated:', updatedUser); // log updated profile on success
     })
     .catch((error) => {
       console.error('Error updating profile:',error); // error if request fails
