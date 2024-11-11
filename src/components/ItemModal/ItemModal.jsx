@@ -9,7 +9,7 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
   // access current user from context
   const currentUser = useContext(CurrentUserContext);
   console.log("Card is...",card);
-  const { name, imageUrl, weather, owner } = card.data || {};
+  const { name, imageUrl, weather, owner } = card || {};
   const isItemCreator = currentUser && currentUser.id === card.ownerId;
   console.log('Modal imageUrl:', imageUrl);
   return (

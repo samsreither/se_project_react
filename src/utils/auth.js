@@ -43,18 +43,8 @@ export const handleUpdateProfile = (token, userData) => {
 };
 
 export const addCardLike = (id, token) => {
-  return fetch(`${BASE_URL}/cards/${id}/likes`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
-    },
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
-};
-
-export const removeCardLike = (id, token) => {
-  return fetch(`${BASE_URL}/cards/${id}/likes`, {
-    method: "DELETE",
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,

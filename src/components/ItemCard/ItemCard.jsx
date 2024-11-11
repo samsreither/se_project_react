@@ -4,19 +4,20 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import likeImage from "../../assets/like-image.svg";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
-  const { name, imageUrl, Likes } = item.data || {};
+  const { name, imageUrl, Likes } = item || {};
   const currentUser = useContext(CurrentUserContext);
   // check if current user's id is in the item.likes array
   const isLiked = Array.isArray(item.likes) && item.likes.some((id) => id === currentUser?.id);
-  // item.likes.some((id) => id === currentUser?.id);
-
   const handleCardClick = () => {
     onCardClick(item);
   };
 
   const handleLike = () => {
     if (currentUser) {
+      console.log("like button clicked");
+
       onCardLike({ id: item._id, isLiked }); // call oncardlike with items id and whether it's liked
+      console.log(isLiked);
     }
   };
 

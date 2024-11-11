@@ -20,6 +20,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem } from "../../utils/api";
+import { addCardLike } from "../../utils/auth";
 
 function App() {
   const currentUser = useContext(CurrentUserContext);
@@ -116,21 +117,19 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-
     if (!isLiked) {
       // Add like - send request to add user's ID to card likes array
-      api
-        .addCardLike(id, token)
+      addCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
+          console.log("Item liked", updatedCard);
         })
         .catch((err) => console.log(err));
     } else {
       // Remove like - send request to remove user's ID from card likes array
-      api
-        .removeCardLike(id, token)
+      removeCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
@@ -145,7 +144,7 @@ function App() {
     console.log('adding item to mongo', newItem);
     return addItem(newItem,token).then((addedItem) => {
       console.log('item added to mongo', addedItem);
-      setClothingItems((prevItems) => [addedItem, ...prevItems]);
+      setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
       closeActiveModal();
     });
   };

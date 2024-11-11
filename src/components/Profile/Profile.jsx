@@ -7,7 +7,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { checkToken } from '../../utils/auth';
 import { handleUpdateProfile } from '../../utils/auth';
 
-function Profile({ onCardClick, onAddClick, clothingItems, onSignOut }) {
+function Profile({ onCardClick, onAddClick, clothingItems, onSignOut, onCardLike }) {
 
   const [isEditProfileOpen, setEditProfileOpen] = useState(false);
 
@@ -79,6 +79,7 @@ function Profile({ onCardClick, onAddClick, clothingItems, onSignOut }) {
           onCardClick={onCardClick}
           onAddClick={onAddClick}
           clothingItems={clothingItems}
+          onCardLike={onCardLike}
         />
       </section>
 

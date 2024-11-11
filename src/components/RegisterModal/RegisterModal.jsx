@@ -25,8 +25,6 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal }) => {
     setLoading(true);
     setError(null);
 
-    console.log("Form data:", values);
-
     onRegister(values)
       .then(() => {
         setValues({ name: "", avatar: "", email: "", password: "" });
