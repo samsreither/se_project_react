@@ -185,9 +185,12 @@ function App() {
           .then(() => {
             // update state to reflect deletion of the item
             setClothingItems((prevItems) => {
+              console.log(prevItems);
               const filteredItems = prevItems.filter((item) => {
-                return item.data && item.data._id !== itemId;
+                const currentItemId = item.data ? item.data._id : item._id;
+                return String(currentItemId) !== String(itemId);
               });
+              console.log("Filtered items:", filteredItems);
               return filteredItems;
             }
             );

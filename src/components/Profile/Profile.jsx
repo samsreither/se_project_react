@@ -14,9 +14,17 @@ function Profile({ onCardClick, onAddClick, clothingItems, onSignOut, onCardLike
   
   const [currentUser, setCurrentUser] = useState({ name: '', avatar: ''});
 
-  
+  const userContext = useContext(CurrentUserContext);
 
-  // need to code to prepopulate inputs with user data
+  useEffect(() => {
+    if (isEditProfileOpen) {
+      setCurrentUser({
+        name: userContext.name,
+        avatar: userContext.avatar
+      });
+    }
+  }, [isEditProfileOpen, userContext]);
+
 
   const handleChangeProfileData = () => {
     setEditProfileOpen(true);
