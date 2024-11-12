@@ -9,11 +9,11 @@ function ClothesSection({
   clothingItems,
   onCardLike,
 }) {
-  const currentUser = useContext(CurrentUserContext); // access the current user
-  // filter items by owner
-  const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
-  );
+  // const currentUser = useContext(CurrentUserContext); // access the current user
+  // // filter items by owner
+  // const userClothingItems = clothingItems.filter(
+  //   (item) => item.owner === currentUser?._id
+  // );
 
   return (
     <div className="clothes-section">

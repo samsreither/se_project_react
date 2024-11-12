@@ -18,9 +18,6 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
           {clothingItems.length > 0 ? (
             clothingItems
               .filter((item) => {
-                console.log('Item weather:', item.weather);
-                console.log('Item:', item);
-                console.log('Weather type:', weatherData.type);
                 return item.weather === weatherData.type})
               .map((item) => (
                 <ItemCard

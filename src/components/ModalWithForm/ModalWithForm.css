@@ -117,4 +117,9 @@
 .modal__additional-text {
   margin-left: 12px;
   color: #00000080;
+  cursor: pointer;
+}
+
+.modal__additional-text:hover {
+  text-decoration: underline;
 }

@@ -70,6 +70,11 @@ function App() {
       });
   };
 
+  // function to toggle between Login and Register modals
+  const toggleModal = () => {
+    setActiveModal((prevModal) => (prevModal === "login" ? "register" : "login"));
+  };
+
   const handleLogin = (data) => {
     return login(data)
     .then((res) => {
@@ -99,11 +104,9 @@ function App() {
     checkToken(token)
       .then((user) => {
         setUser(user); // set user if token is valid
-        console.log('user is from checktoken...',user);
         setIsLoggedIn(true);
       })
       .catch((err) => {
-        console.error(err);
         setIsLoggedIn(false);
         setUser(null);
       });
@@ -169,8 +172,6 @@ function App() {
 
   const handleCardDelete = (cardToDelete) => {
     const token = localStorage.getItem("jwt");
-    console.log('token',token);
-    console.log('Card to delete',cardToDelete);
     if (!token) {
       console.error("No token found, cannot delete item");
       return;
@@ -179,15 +180,14 @@ function App() {
     checkToken(token)
       .then(() => {
         const itemId = cardToDelete.data ? cardToDelete.data._id : cardToDelete._id;
-        console.log("Attempting to delete item withID:", itemId);
+        
         deleteItem(itemId, token)
           .then(() => {
+            // update state to reflect deletion of the item
             setClothingItems((prevItems) => {
               const filteredItems = prevItems.filter((item) => {
-                console.log(item);
                 return item.data && item.data._id !== itemId;
               });
-              console.log('Filtered items:', filteredItems);
               return filteredItems;
             }
             );
@@ -212,24 +212,22 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log('isLoggedIn', isLoggedIn);
-    console.log('currentUser:', user);
-    if (isLoggedIn && user) {
-      getItems()
-        .then((data) => {
-          console.log('current user id', user._id);
-          console.log('item data is ...',data);
-          const userItems = data.filter(item => item.owner === user._id)
+    getItems()
+      .then((data) => {
+        // If user is logged in, filter items by the user's ID
+        if (isLoggedIn && user) {
+          const userItems = data.filter((item) => item.owner === user._id);
           setClothingItems(userItems);
-          console.log('clothing data',userItems);
-        })
-        .catch(console.error);
-    }
-  }, [isLoggedIn]); // only fetch items when user is logged in
+        } else {
+          // Show all items when no user is logged in
+          setClothingItems(data);
+        }
+      })
+      .catch(console.error);
+  }, [isLoggedIn, user]); // refetch when login status or user data changes
 
   // Log the active modal state every time it changes
   useEffect(() => {
-    console.log("Active Modal:", activeModal);
   }, [activeModal]);
 
   return (
@@ -280,14 +278,18 @@ function App() {
                 isOpen={activeModal === "register"}
                 onRegister={handleRegister}
                 onCloseModal={closeActiveModal}
+                onToggleModal={toggleModal}
                 error={error}
             />
             )}
+            {activeModal === "login" && (
             <LoginModal
                 isOpen={activeModal === "login"}
                 onLogin={handleLogin}
                 onCloseModal={closeActiveModal}
+                onToggleModal={toggleModal}
             />
+            )}
             <AddItemModal
               buttonText="Add garment"
               title="New garment"
