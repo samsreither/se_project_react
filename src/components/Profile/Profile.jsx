@@ -7,11 +7,14 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { checkToken } from '../../utils/auth';
 import { handleUpdateProfile } from '../../utils/auth';
 
-function Profile({ onCardClick, onAddClick, clothingItems, onSignOut, onCardLike }) {
+function Profile({ onCardClick, onAddClick, clothingItems, onSignOut, onCardLike, setUser }) {
 
+  
   const [isEditProfileOpen, setEditProfileOpen] = useState(false);
-
+  
   const [currentUser, setCurrentUser] = useState({ name: '', avatar: ''});
+
+  
 
   // need to code to prepopulate inputs with user data
 
@@ -37,7 +40,10 @@ function Profile({ onCardClick, onAddClick, clothingItems, onSignOut, onCardLike
     const userData = { name, avatar};
     handleUpdateProfile(token, userData) // update profile on server (API) - handleUpdateProfile is in api.js
     .then((updatedUser) => {
-      setCurrentUser(updatedUser);
+      console.log('Current user is...', updatedUser); //updatedUser is correct here
+      setUser(updatedUser);
+      // profile does not update until I refresh the page!!
+      handleCloseProfileData();
     })
     .catch((error) => {
       console.error('Error updating profile:',error); // error if request fails

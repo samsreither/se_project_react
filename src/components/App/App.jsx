@@ -20,7 +20,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem } from "../../utils/api";
-import { addCardLike } from "../../utils/auth";
+import { addCardLike, removeCardLike } from "../../utils/auth";
 
 function App() {
   const currentUser = useContext(CurrentUserContext);
@@ -122,7 +122,7 @@ function App() {
       addCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => (item._id === id ? updatedCard.data : item))
           );
           console.log("Item liked", updatedCard);
         })
@@ -132,7 +132,7 @@ function App() {
       removeCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => (item._id === id ? updatedCard.data : item))
           );
         })
         .catch((err) => console.log(err));
@@ -267,6 +267,7 @@ function App() {
                       clothingItems={clothingItems}
                       onCardLike={handleCardLike}
                       onSignOut={handleSignOut}
+                      setUser={setUser}
                     />
                   }
                 />

@@ -94,6 +94,27 @@
   padding: 8px 12px;
 }
 
+.modal__submit-save-changes {
+  padding: 8px 16px;
+  width: auto;
+  font-style: 16px;
+  line-height: 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.modal__submit-login {
+  width: 73px;
+  height: 36px;
+}
+
+
+
 .modal__submit:hover {
   background-color: #00000099;
+}
+
+.modal__additional-text {
+  margin-left: 12px;
+  color: #00000080;
 }

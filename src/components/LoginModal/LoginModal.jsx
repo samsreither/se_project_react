@@ -44,6 +44,7 @@ const LoginModal = ({ isOpen, onLogin, onCloseModal }) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      additionalText={<a className="modal__sign-up-link">or Sign Up</a>}
     >
       <label htmlFor="email" className="modal__label">
         Email

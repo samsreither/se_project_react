@@ -27,7 +27,7 @@ function ClothesSection({
       <ul className="clothes-section__items">
         {clothingItems.length > 0 ? (
           clothingItems.map((item) => {
-            console.log(item);
+            // console.log(item);
             return (
               <ItemCard
                 key={item._id}

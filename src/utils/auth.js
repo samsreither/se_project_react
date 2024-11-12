@@ -51,3 +51,13 @@ export const addCardLike = (id, token) => {
     },
   }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
 };
+
+export const removeCardLike = (id, token) => {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+};

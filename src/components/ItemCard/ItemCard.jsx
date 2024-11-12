@@ -2,17 +2,20 @@ import React, { useContext } from "react";
 import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import likeImage from "../../assets/like-image.svg";
+import likedImage from "../../assets/liked-image.svg";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const { name, imageUrl, Likes } = item || {};
   const currentUser = useContext(CurrentUserContext);
+
   // check if current user's id is in the item.likes array
-  const isLiked = Array.isArray(item.likes) && item.likes.some((id) => id === currentUser?.id);
+  const isLiked = Array.isArray(item.likes) && item.likes.some((id) => id === currentUser?._id);
   const handleCardClick = () => {
     onCardClick(item);
   };
 
-  const handleLike = () => {
+  const handleLike = (event) => {
+    event.stopPropagation();
     if (currentUser) {
       console.log("like button clicked");
 
@@ -30,7 +33,9 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         <h2 className="card__name">{name}</h2>
         {currentUser && (
         <button className={itemLikeButtonClassName} onClick={handleLike}>
-            <img src={likeImage} alt={isLiked ? "Unlike" : "Like"} className="like-button__icon" />
+            <img 
+            src={isLiked ? likedImage : likeImage} alt={isLiked ? "Unlike" : "Like"} className="like-button__icon" 
+            />
         </button>
         )}
       </div>
