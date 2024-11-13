@@ -26,7 +26,6 @@ const LoginModal = ({ isOpen, onLogin, onCloseModal, onToggleModal }) => {
     onLogin(values)
       .then(() => {
         setValues({ email: "", password: "" });
-        setLoading(false);
         onCloseModal();
       })
       .catch((err) => {
@@ -44,7 +43,7 @@ const LoginModal = ({ isOpen, onLogin, onCloseModal, onToggleModal }) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      additionalText={<a className="modal__sign-up-link" onClick={onToggleModal}>or Sign Up</a>}
+      additionalLink={<a className="modal__sign-up-link" onClick={onToggleModal}>or Sign Up</a>}
     >
       <label htmlFor="email" className="modal__label">
         Email

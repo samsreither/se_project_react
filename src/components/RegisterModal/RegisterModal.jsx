@@ -28,7 +28,6 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onToggleModal }) => {
     onRegister(values)
       .then(() => {
         setValues({ name: "", avatar: "", email: "", password: "" });
-        setLoading(false);
         onCloseModal();
       })
       .catch((err) => {
@@ -46,7 +45,7 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onToggleModal }) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      additionalText={<a className="modal__sign-in-link" onClick={onToggleModal} >or Sign In</a>}
+      additionalLink={<a className="modal__sign-in-link" onClick={onToggleModal} >or Sign In</a>}
     >
       <label htmlFor="name" className="modal__label">
         Name

@@ -11,9 +11,6 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
 
   const { name, imageUrl, weather } = values;
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     if (isOpen) {
       setError(null);
@@ -35,7 +32,6 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
     onSubmit(newItem)
       .then(() => {
         setValues({ name: "", imageUrl: "", weather: "" });
-        setLoading(false);
       })
       .catch((err) => {
         setError(err);

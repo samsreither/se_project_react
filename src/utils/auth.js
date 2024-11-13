@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3001";
+import { checkResponse } from "./api";
 
 export const register = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -7,7 +8,7 @@ export const register = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+  }).then(checkResponse);
 };
 
 export const login = ({ email, password }) => {
@@ -17,7 +18,7 @@ export const login = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+  }).then(checkResponse);
 };
 
 export const checkToken = (token) => {
@@ -27,7 +28,7 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.error)));
+  }).then(checkResponse);
 };
 
 // update the profile
@@ -39,7 +40,7 @@ export const handleUpdateProfile = (token, userData) => {
       "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify( userData ),
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+  }).then(checkResponse);
 };
 
 export const addCardLike = (id, token) => {
@@ -49,7 +50,7 @@ export const addCardLike = (id, token) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+  }).then(checkResponse);
 };
 
 export const removeCardLike = (id, token) => {
@@ -59,5 +60,5 @@ export const removeCardLike = (id, token) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
     },
-  }).then((res) => (res.ok ? res.json() : Promise.reject(res.statusText)));
+  }).then(checkResponse);
 };

@@ -23,7 +23,6 @@ import { getItems, addItem, deleteItem } from "../../utils/api";
 import { addCardLike, removeCardLike } from "../../utils/auth";
 
 function App() {
-  const currentUser = useContext(CurrentUserContext);
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999 },
@@ -64,10 +63,6 @@ function App() {
             }
           });
       })
-      .catch((error) => {
-        console.error("Error during registration or login:", error);
-        setError("Registration or login failed. Please try again.");
-      });
   };
 
   // function to toggle between Login and Register modals
@@ -91,10 +86,6 @@ function App() {
       setIsLoggedIn(true);
       closeActiveModal();
     })
-    .catch((error) => {
-      console.error("Error during login:", error);
-      setError("Login failed. Please try again");
-    });
   };
 
   // check for token on App load
@@ -138,7 +129,7 @@ function App() {
             cards.map((item) => (item._id === id ? updatedCard.data : item))
           );
         })
-        .catch((err) => console.log(err));
+        .catch(console.error);
     }
   };
 
@@ -228,10 +219,6 @@ function App() {
       })
       .catch(console.error);
   }, [isLoggedIn, user]); // refetch when login status or user data changes
-
-  // Log the active modal state every time it changes
-  useEffect(() => {
-  }, [activeModal]);
 
   return (
     <CurrentUserContext.Provider value={user}>
