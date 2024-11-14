@@ -11,6 +11,11 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
 
   const { name, imageUrl, weather } = values;
 
+  // app broke when i took these out per last reviewer - putting them back in - add clothes
+  // section crashed
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (isOpen) {
       setError(null);

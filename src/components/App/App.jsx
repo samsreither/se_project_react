@@ -21,6 +21,7 @@ import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 import { addCardLike, removeCardLike } from "../../utils/auth";
+import ProtectedRoute from "../../utils/ProtectedRoute";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -249,14 +250,16 @@ function App() {
                 <Route
                   path="/profile"
                   element={
-                    <Profile
-                      onCardClick={handleCardClick}
-                      onAddClick={handleAddClick}
-                      clothingItems={clothingItems}
-                      onCardLike={handleCardLike}
-                      onSignOut={handleSignOut}
-                      setUser={setUser}
-                    />
+                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                      <Profile
+                        onCardClick={handleCardClick}
+                        onAddClick={handleAddClick}
+                        clothingItems={clothingItems}
+                        onCardLike={handleCardLike}
+                        onSignOut={handleSignOut}
+                        setUser={setUser}
+                      />
+                      </ProtectedRoute>
                   }
                 />
               </Routes>

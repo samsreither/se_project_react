@@ -8,7 +8,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
-  additionalText=null,
+  additionalLink=null,
   className = ''
 }) {
   return (
@@ -24,7 +24,7 @@ function ModalWithForm({
             <button type="submit" className="modal__submit modal__submit-save-changes">
               {buttonText}
             </button>
-            {additionalText && <span className="modal__additional-text">{additionalText}</span>}
+            {additionalLink && <span className="modal__additional-text">{additionalLink}</span>}
           </div>
         </form>
       </div>
