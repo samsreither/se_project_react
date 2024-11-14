@@ -11,23 +11,21 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
 
   const { name, imageUrl, weather } = values;
 
-  // app broke when i took these out per last reviewer - putting them back in - add clothes
-  // section crashed
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      setError(null);
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     setError(null);
+  //   }
+  // }, [isOpen]);
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submit button clicked");
-    setLoading(true);
-    setError(null);
+    // setLoading(true);
+    // setError(null);
 
     const newItem = { name, imageUrl, weather };
     
@@ -39,7 +37,7 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
         setValues({ name: "", imageUrl: "", weather: "" });
       })
       .catch((err) => {
-        setError(err);
+        console.error("Error submitting new item:", err);
       })
       .finally(() => {
         setLoading(false);
