@@ -6,7 +6,7 @@ const ProtectedRoute = ({ isLoggedIn, children }) => {
     const isAuthenticated = isLoggedIn || localStorage.getItem('token');
     console.log(isAuthenticated);
     // return protected component if authenticated, otherwise redirect
-    return isAuthenticated ? children : <Navigate to="/profile" replace/> ;
+    return isAuthenticated ? children : <Navigate to="/" replace/> ;
 
 };
 

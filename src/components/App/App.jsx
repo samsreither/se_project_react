@@ -83,7 +83,6 @@ function App() {
     })
     .then((userData) => {
       setUser(userData);
-      console.log('user is...',user);
       setIsLoggedIn(true);
       closeActiveModal();
     })

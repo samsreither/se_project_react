@@ -47,12 +47,12 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onToggleModal }) => {
       onSubmit={handleSubmit}
       additionalLink={<a className="modal__sign-in-link" onClick={onToggleModal} >or Sign In</a>}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="register-name"
           name="name"
           placeholder="Your Name"
           value={name}
