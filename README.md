@@ -1,10 +1,10 @@
-# React + Vite
+# What to Wear - Front end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Description
+This project allows users to create an account, or sign in if the user already has an account. Once an account is created, the user can add clothing items to their profile, or change their name and/or avatar. Weather data is retrieved from Open Weather API for the current day. Based on weather type, clothing items will show up on the home page. All user data and clothing items are stored in Mongo DB, this project is fully deployed at 'samr.crabdance.com' using Google Cloud.
 
-Currently, two official plugins are available:
+# Demo Video
+https://www.loom.com/share/f76955e9d40f4b4199e2462fd8249de8
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-Link to back end repo - https://github.com/samsreither/se_project_express
+# Link to Back End Repository
+https://github.com/samsreither/se_project_express

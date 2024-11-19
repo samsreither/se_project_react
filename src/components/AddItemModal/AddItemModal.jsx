@@ -11,15 +11,6 @@ const AddItemModal = ({ isOpen, onCloseModal, onSubmit }) => {
 
   const { name, imageUrl, weather } = values;
 
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     setError(null);
-  //   }
-  // }, [isOpen]);
-
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
