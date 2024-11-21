@@ -4,7 +4,9 @@ function checkResponse(res) {
   if (res.ok) {
     return res.json();
   } else {
-    return Promise.reject(`Error: ${res.status}`);
+    return res.json().then((errorData) => {
+      return Promise.reject(errorData.message || `Error: ${res.status}`);
+    });
   }
 }
 

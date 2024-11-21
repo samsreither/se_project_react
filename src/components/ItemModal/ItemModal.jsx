@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import "./ItemModal.css";
-import whiteX from "../../assets/whiteX.svg";
+import grayX from "../../assets/grayX.svg";
 
 
 function ItemModal({ activeModal, onClose, card, onDelete }) {
@@ -14,7 +14,7 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
     <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={onClose} type="button" className="modal__close">
-          <img src={whiteX} alt="Close" className="modal__close-icon" />
+          <img src={grayX} alt="Close" className="modal__close-icon" />
         </button>
         <img src={imageUrl} alt="modal-image" className="modal__image" />
         <div className="modal__footer">
@@ -31,7 +31,7 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
             </button>
           )}
           {!isItemCreator && (
-            <p className="modal__no-permission">You cannot delete this item.</p>
+            <p className="modal__no-permission">Can't delete. Please log in.</p>
           )}
         </div>
       </div>
