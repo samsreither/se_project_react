@@ -262,6 +262,7 @@ function App() {
                   }
                 />
               </Routes>
+              <Footer />
             </div>
 
             {/* Modals */}
@@ -295,7 +296,6 @@ function App() {
               onClose={closeActiveModal}
               onDelete={handleCardDelete}
             />
-            <Footer />
           </div>
         </Router>
       </CurrentTemperatureUnitContext.Provider>
