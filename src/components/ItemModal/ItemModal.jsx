@@ -6,12 +6,19 @@ import grayX from "../../assets/grayX.svg";
 
 function ItemModal({ activeModal, onClose, card, onDelete }) {
 
+  const handleBackdropClick = (e) => {
+    // function to close the modal if backdrop is clicked on
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
   // access current user from context
   const currentUser = useContext(CurrentUserContext);
   const { name, imageUrl, weather, owner } = card || {};
   const isItemCreator = currentUser && currentUser.id === card.ownerId;
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
+    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}
+    onClick={handleBackdropClick}>
       <div className="modal__content modal__content_type_image">
         <button onClick={onClose} type="button" className="modal__close">
           <img src={grayX} alt="Close" className="modal__close-icon" />
