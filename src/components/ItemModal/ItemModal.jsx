@@ -37,9 +37,9 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
               Delete item
             </button>
           )}
-          {!isItemCreator && (
+          {/* {!isItemCreator && (
             <p className="modal__no-permission">Can't delete. Please log in.</p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
